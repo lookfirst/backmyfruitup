@@ -3,8 +3,6 @@
 
 <wiki:gadget url="http://drobocapsule.googlecode.com/svn/wiki/adsense2.xml" border="0" width="468" height="60" />
 
-http://drobocapsule.googlecode.com/svn/wiki/droboicon.jpg
-
 = Introduction =
 
 Apple makes it very difficult to use TimeMachine to backup to anything other than the expensive proprietary  TimeCapsule. This project enables one to use TimeMachine to backup to a Drobo/DroboShare over AFP via netatalk.
