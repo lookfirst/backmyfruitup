@@ -13,7 +13,7 @@ Additionally, I have spent close to 60 hours making all of this work. Trust me, 
 
 = Details for Installation =
 
-#1. You must be using ext3 or HFS+ as your filesystem on your Drobo. I personally use HFS+. The reason is because NTFS and FAT32 do not support symbolic links properly. This will prevent DroboCapsule from working.
+#1. You must be using ext3 or HFS+ as your filesystem on your Drobo. I personally use HFS+. The reason is because NTFS and FAT32 do not support symbolic links properly. This will prevent BackMyFruitUp from working.
 
 #2. Confirm that the path to your DroboApps folder is this: {{{ /mnt/DroboShares/Drobo/DroboApps }}}. This is required for netatalk to install properly. The reason is because there is so many hard coded paths in the configuration files that it would be a real nightmare to try to make this any more dynamic than it is.
 
