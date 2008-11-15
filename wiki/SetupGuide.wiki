@@ -9,7 +9,7 @@ Apple makes it very difficult to use TimeMachine to backup to anything other tha
 
 Note: I take no responsibility if this software destroys your applications or you lose all of your possessions.
 
-Additionally, I have spent close to 60 hours making all of this work. Trust me, it was not easy. If you find this package useful, [http://paypal.com Paypal] donations to latchkey@gmail.com are most appreciated. No amount is too small.
+Additionally, I have spent close to 60 hours making all of this work. Trust me, it was not easy. If you find this package useful, [http://paypal.com Paypal] donations to latchkey@gmail.com are most appreciated. No amount is too small. Be the first?
 
 = Details for Installation =
 
