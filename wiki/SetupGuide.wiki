@@ -44,6 +44,13 @@ afp://;AUTH=No%20User%20Authent@DroboCapsule._afpovertcp._tcp.local/DroboCapsule
 
  * If TimeMachine fails to backup after a successful backup with the error (The backup volume could not be mounted.), MAKE SURE the DroboCapsule volume is not mounted. Click the little eject button next to it. It is fine to mount the Drobo volume at any time. It is also fine to mount the DroboCapsule volume AFTER TimeMachine has started. Just make sure it isn't mounted before TimeMachine starts up.
 
+ * I've heard of cases where an error below will show up in the Console.app log when trying to connect to the server and the connection will fail. If this happens, ensure nobody is connected to the server or trying to connect. Then, log into the DroboShare over ssh and {{{cd /mnt/DroboShares/Drobo; rm -rf .AppleDesktop .AppleDouble}}}. It seems that occasionally these two directories full of files can sometimes get corrupted. Removing these folders fixes that problem and doesn't seem to affect anything else.
+
+{{{
+/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder[173]
+StatusMonitor::volumesChangedCallBack returned -47
+}}}
+
 = Details for Removal/Upgrade =
 
 Delete the DroboApps/netatalk folder and reboot your droboshare. Because of permission issues, you may have to do this over the SMB share or by logging into the DroboShare via ssh.
