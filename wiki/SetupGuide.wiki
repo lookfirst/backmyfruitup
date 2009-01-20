@@ -25,7 +25,7 @@ Note: I take no responsibility if this software destroys your applications or yo
 
 = Details for TimeMachine Setup =
 
-#1. Click on the DroboCapsule and mount it as guest. You should see two volumes,  one titled Drobo and another titled DroboCapsule. The Drobo volume is the same mount point as the standard Drobo Dashboard samba based share. DroboCapsule is where you should put your TimeMachine backups. Note: You can still use Drobo Dashboard at any time.
+#1. From a Finder window click on the DroboCapsule in the Shared list and mount it as guest.  You should see two volumes, one titled Drobo and another titled DroboCapsule.  These are mount points via AFP. They differ from the mount via the Drobo Dashboard called Drobo, which uses SMB.  Load the DroboCapsule volume from the mount point. This is where you will put the sparsebundle that will be created in the next step.
 
 #2. Run the Create Backup Volume application. It will ask you for the maximum size of the volume and will create a new sparsebundle on your desktop. After it is finished, copy the sparsebundle to the DroboCapsule share and delete it from your desktop.
 
