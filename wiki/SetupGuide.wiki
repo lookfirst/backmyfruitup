@@ -5,7 +5,7 @@
 
 = Introduction =
 
-Apple makes it very difficult to use TimeMachine to backup to anything other than the expensive proprietary  TimeCapsule. This project enables one to use TimeMachine to backup to a Drobo/DroboShare over AFP via netatalk. This project is fully tested and stable.
+Apple makes it very difficult to use TimeMachine to backup to anything other than the expensive proprietary  TimeCapsule. This project enables one to use TimeMachine to backup to a Drobo/DroboShare over AFP via netatalk. This project is fully tested and stable. Multiple machines can be backed up to the same Drobo using different sparsebundles for each machine.
 
 Note: I take no responsibility if this software destroys your applications or you lose all of your possessions.
 
@@ -27,7 +27,7 @@ Note: I take no responsibility if this software destroys your applications or yo
 
 #1. From a Finder window click on the DroboCapsule in the Shared list and mount it as guest.  You should see two volumes, one titled Drobo and another titled DroboCapsule.  These are mount points via AFP. They differ from the mount via the Drobo Dashboard called Drobo, which uses SMB.  Load the DroboCapsule volume from the mount point. This is where you will put the sparsebundle that will be created in the next step.
 
-#2. Run the Create Backup Volume application. It will ask you for the maximum size of the volume and will create a new sparsebundle on your desktop. After it is finished, copy the sparsebundle to the DroboCapsule share and delete it from your desktop.
+#2. Run the Create Backup Volume application. It will ask you for the maximum size of the volume and will create a new sparsebundle on your desktop. After it is finished, copy the sparsebundle to the DroboCapsule share and delete it from your desktop. Note: You will need to run this application on each mac that you want to backup.
 
 #3. Log out of the Finder and log back in.
 
