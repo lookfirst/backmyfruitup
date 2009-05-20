@@ -70,3 +70,7 @@ A full system restore has been successfully tested using this system. Note, this
 #4. Quit Terminal and then select "Restore System From Backup..." in the Utilities menu.
 
 #5. Your backups should show up and you can just follow the standard steps for a restore.
+
+= Support =
+
+There is a [http://groups.google.com/group/backmyfruitup google group] setup for discussion. Please make sure that you read all of the archives first before posting any questions.
