@@ -1,0 +1,206 @@
+This is a page of comments which used to be at the end of the SetupGuide. There is some useful information in here that I wanted to archive. I turned off comments because I created a [http://groups.google.com/group/backmyfruitup discussion group] instead. It is a better way of getting support because it is searchable.
+
+----
+
+Comment by davidaduff, Nov 18, 2008
+
+is there any way to take mods to the configuration you are using for netatalk on the droboshare and run them on a regular afp server?
+
+...or should timemachine backups already work to an AFP server? (and must the server be running leopard?) i'm confused by all the different and conflicting info out there on the net about what works and what doesn't and why.
+Comment by latchkey, Nov 18, 2008
+
+Define 'regular afp server'. I'm not really sure I understand your question. Can you do TimeMachine? backups to a sparsebundle mounted from another Mac server? Yes. Do you need to be running 10.5 on that Mac server? Probably.
+
+Just use my Create Backup Volume script and follow steps #3 and #4 above for setting things up (obviously substituting DroboCapsule? for your own share points).
+Comment by ecchinut, Nov 19, 2008
+
+It seems my DroboShare? Apps' path is: /mnt/DroboShares?/drobo1/DroboApps?/
+
+suggestions?
+Comment by latchkey, Nov 21, 2008
+
+ln -s
+Comment by ecchinut, Nov 22, 2008
+
+That works. I tried changing all the paths first, but didn't seem to work. One side-effect is the main Drobo share is also on AFP now too, and its unprotected(no login/pass), despite the SMB share being protected.
+Comment by ariel.goldberg, Nov 24, 2008
+
+Echoing ecchinut's comment, is there any way to password protect the data that time machine backs up to the droboshare? It's fantastic having the droboshare on the network and compatible with Time Machine but I don't want everybody on my network to be able to get at my data (this is also an issue since I need to store confidential information). Thanks!
+Comment by larryhr, Nov 27, 2008
+
+Cool idea. I've got it running, but I have a small problem. When I use AFP to browse to the Drobo, I can't drop files on to it. I can copy from it though. I don't have a password assigned to the unit, and when I connect via SMB I CAN move drop files on to it.
+
+Puzzled.
+
+Also: How can I change the icon? I'd like to add a Drobo icon :)
+Comment by latchkey, Dec 01, 2008
+
+@ecchinut/ariel: You can configure netatalk with usernames and passwords and what not by following the netatalk documentation. This is an exercise left to the reader and is beyond the scope of what I am willing to freely help you with.
+
+@larryhr: on the droboshare, smb permissions != afp permissions. So, you have a couple options:
+
+#1. you need to either configure netatalk to run as root (just like smb). this is done by editing the netatalk.conf file and restarting afpd (or your droboshare). that way, files/folders will have the same ownership. #2. stop using smb entirely. log into the droboshare and chown the files so that they are owned by 'nobody'.
+Comment by latchkey, Dec 01, 2008
+
+@larryhr: if you would like to change the icon, follow the directions here:
+
+http://www.simonwheatley.co.uk/2008/04/06/avahi-finder-icons/ http://www.kremalicious.com/2008/06/ubuntu-as-mac-file-server-and-time-machine-volume/#icon
+Comment by larryhr, Dec 11, 2008
+
+Thanks....I'll try that.
+Comment by larryhr, Dec 11, 2008
+
+Latchkey, What variables do I need to tweak in netatalk.conf to allow R/W access?
+Comment by gburgyan.vec, Dec 15, 2008
+
+I've been trying the same thing -- I've played around with the netatalk.conf file for a while now and it insists on spawning the worker processes as nobody. Any pointers?
+Comment by gburgyan.vec, Dec 16, 2008
+
+I've done a bit of digging in the regular netatalk distrib and it looks as though there's a hard-coded prohibition against having root log in.
+
+In ./etc/afpd/auth.c line 226 there's an if that knocks out uid 0. This would explain the symptoms I was having when I added a "-g root" to the startup script: that I would fail to authenticate to the afpd from my MBP.
+
+Would it be possible to populate up the SVN in Google code so I can try making this change myself? (or just comment out the code yourself and see what comes of it?)
+
+Thanks in advance!
+Comment by garthk, Jan 11, 2009
+
+I can't connect to my password-protected DroboShare?, except as Guest. I'd much, MUCH prefer to authenticate. If I remove uams_guest.so from uamlist, though, I can't connect at all. I've:
+
+    * tried both uams_dhx.so and uams_clrtxt.so in uamlist in etc/netatalk/afpd.conf
+    * checked that etc/netatalk/uams/uams_dhx.so remains symlinked to uams_dhx_passwd.so
+    * re-run passwd to assert the /etc/passwd password on the account
+    * copied /etc/passwd to etc/passwd just in case
+    * put the cleartext password in ~$USERNAME/.passwd just in case
+    * removed /mnt/DroboShares?/Drobo/.AppleD 
+
+OS X' reaction is pretty consistent: “Sorry, you entered an invalid username or password. Please try again.” I've looked for log files on the Drobo, but it seems netatalk only uses syslog and DroboShare? doesn't run syslog.
+
+I've taken your “beyond the scope of what I am willing to freely help you with” hint, and contributed USD$10. I hope that shakes forth a meagre hint or two. I'll gleefully tip more once I can write as an authenticated user.
+Comment by garthk, Jan 11, 2009
+
+Bah. Unpredicted markup. Sorry.
+Comment by mi...@macintek.com, Jan 17, 2009
+
+I'm lost... I follow the instructions to the letter and the drobo still mounts as DroboShare? (not DroboCapsule?) with only one volume. The path to droboapps is /droboshare/drobo1/DroboApps? .
+
+Does this process need to be done completely in the command line or can it be accomplished in the OS X GUI?
+Comment by latchkey, Jan 19, 2009
+
+"The path to droboapps is /droboshare/drobo1/DroboApps?? ."
+
+Then you didn't follow the directions to the letter. Go back and read #2 from the first section.
+Comment by marco.dambros, Jan 22, 2009
+
+@garthk: did you solve the problem? I tried the same and it did not work. I also try (just to see if this would have worked) with the clear password (uams_clrtxt.so), and in this case I get the following error in OSX: Connection failed: There was an error connecting to the server. Check the server name or IP address and try again.
+
+Thanks! Ciao, Marco
+Comment by gbagerry, Jan 24, 2009
+
+Is it possible to put two different sparce bundles in the TimeCapsule? volume? I'd like to also back up my MacBook? Pro.
+Comment by gbagerry, Jan 24, 2009
+
+Sorry :-( I meant DroboCapsule?.
+Comment by NamasteForever, Jan 26, 2009
+
+Thanks. I'm having a hard time changing my VOLUME name from "Drobo1" to Drobo. When I mount it via Firewire only it shows as DROBO nor Drobo1. Therefore I can't get the path : /mnt/DroboShares?/Drobo/DroboApps?
+
+Anyone have suggestions ? Drobo support is dead ? Their support.php fails..... so does request_support.html.
+
+Phone support: 30min ....No pick up.
+Comment by siff...@museworld.com, Jan 26, 2009
+
+The sparseimage creation part of this that you mention elsewhere on the web could be useful to those of us who use a shared Drobo without a Droboshare. For instance, I have a Drobo connected to my Mac Pro, and want to use my Macbook to back up to it. Any sense on how to take advantage of this without all the droboshare-specific install information?
+Comment by ben.batt...@mac.com, Feb 03, 2009
+
+I have tried to install netatalk on my droboshare as described but I have not had the drobocapsule apear. Any idea what Ive missed/doing wrong?
+Comment by nextharbour, Feb 05, 2009
+
+This project is SO CLOSE to being awesome. Being able to read/write files as ROOT so mac users are on par with SMB users, is a must-have. There's no point having a droboshare with AFP that you can't share files between Mac and PCs. Setting the guest user as root through config files doesn't work as the source code checks to see whether guid = 0. You've done an awesome job getting the project this far. This is the only thing that's holding me back telling everyone about this. Please, please, please fix this! Keep up the great work!
+Comment by jameshamar, Feb 10, 2009
+
+So I have a few problems.
+
+1. When I try to name my -Drobo- Drobo to be compatible with the path specified for netatalk to work, it gets force named Drobo1. Nothing I can do can change the name to remove the 1.
+
+2. So I gave up on that and named my Drobo TESTDROBO. I have tried to use ssh to log in, then use ln -s /mnt/DroboShares?/TESTDROBO/DroboApps?/ in terminal. I dont get an error message, so I assumed the command worked. (The ssh command was run after netatalk was installed on the droboshare.)
+
+3. I reset the drobo and droboshare and nothing happens. This blog post says it worked.. http://www.aidanfindlater.com/2008/11/12/droboshare-netatalk-time-machine/ but i havnt had any luck.
+Comment by jameshamar, Feb 10, 2009
+
+ok so i was able to get the drobocapsule to show up after checking my ssh code. It does show up now, but i get a connection failed.. and I can't connect to it via guest or another account.
+Comment by antti.rasinen, Feb 15, 2009
+
+Hello Mr Latchkey.
+
+I've had some intermittent reboot problems with Drobo, so I followed the support instructions and ran Disk Utility's Repair Disk on the Drobo. After this the DroboCapsule? mount points refuse to show up. To clarify: I see DroboCapsule? on my Finder sidebar, but clicking it only brings up the "Connecting"-display.
+
+I've removed and reinstalled netatalk and rebooted both Drobo and both of my computers. No success.
+
+My only theory at this point is that the Disk Utility changed some ownership and/or access rights in the DroboCapsule?/ directory, after which avahi/afpd/dbus refuses to work properly. Do you have a list about what the proper access rights should be or do you have other ideas about what is causing this problem?
+
+Console shows these errors: "FSMountServerVolumeSync faild with error -6602" and also error -36.
+
+--Antti
+
+--Antti
+Comment by antti.rasinen, Feb 15, 2009
+
+gbagerry: I backup three Macs to the drobo. No problem in having several sparsebundles in the DroboCapsule?-directory.
+Comment by dndgirl, Feb 15, 2009
+
+antti.rasinen: I've been trying without success to back up my Macbook to a second sparsebundle without success. The iMac, which I installed first, works fine. But every time I try to back up the Macbook, it seems to be preparing for several minutes, but then fails with the message "The backup disk image count not be mounted." Any advice?
+Comment by antti.rasinen, Feb 15, 2009
+
+Sorry dnd, I only have the success story to tell. If none of the tips offered in the original page work, I have nothing more to add. What happens when you try to move the iMac sparsebundle to another directory? If the backup still fails, then the problem is probably with the Macbook itself.
+Comment by antti.rasinen, Feb 17, 2009
+
+Regarding my original problem: the fault lies directly in afpd. The same connection problem exists even without dbus and avahi (which was to be expected, of course). According to tcpdump, the mounting process goes without problems until my computer sends "openvol" request to the server. The server never responds and my Mac keeps saying "Connecting".
+Comment by antti.rasinen, Feb 17, 2009
+
+I renamed directory DroboCapsule? to DroboCapsule2? and reinstalled netatalk. After the startup script had recreated DroboCapsule?, I moved everything from DC2 to the new directory. Everything works. I don't get it.
+Comment by latchkey, Feb 25, 2009
+
+Hey everyone, the donation button isn't getting clicked anymore and my motivation to support 'root' connections has dwindled as a result. Sorry.
+Comment by justin.barkhuff, Mar 18, 2009
+
+For those with a DroboApps? path other than the required default, this might help.
+
+1. SSH into your Drobo and run this command to create a symbolic link (change 'Drobo01' to your relevant Drobo name):
+
+ln -s /mnt/DroboShares?/Drobo01/ /mnt/DroboShares?/Drobo
+
+2. Restart your DroboShare?
+
+3. Resume "Details for Installation" at step #3.
+
+IMPOTANT NOTE: In my earlier failed attempts to install backmyfruitup, one of the netatalk scripts (netatalk-start.sh) had created the following directories: /mnt/DroboShares?/Drobo/ /mnt/DroboShares?/Drobo/DroboCapsule?/
+
+Since, all my data and DroboApps? were stored in /mnt/DroboShares?/Drobo01, I deleted /mnt/DroboShares?/Drobo/ and all it's contents prior to completing the steps I've outlined. I recommend doing the same; however, BE SURE YOU DON'T HAVE DATA SAVED IN /mnt/DroboShares?/Drobo/ BEFORE DELETING IT. Here is the shell command you can run to delete the directory and all it's contents (run this at your own risk):
+
+rm -fr /mnt/DroboShares?/Drobo
+Comment by stevekaro, Apr 18, 2009
+
+This thing is great!! Thanks a bunch. I had a laptop stolen, without a backup. Bought a mac...and a drobo, and found out I could not back up through time machine. Your app has made my day.
+Comment by latchkey, May 16 (3 days ago)
+
+Hi everyone, I'm working on a new release with latest versions of everything and I've also recompiled afpd with the ability to run as root since so many people were asking for that.
+
+I've ran into a small snag with afpd where it just isn't working and seems to be getting into an endless loop in a specific function. I'm asking for help on the netatalk developer list. Once I get that resolved and do some testing, I'll post it.
+
+p.s. donations to continue working on this are a huge motivator.
+Comment by reg.charney, Yesterday (37 hours ago)
+
+Running TimeMachine? to Drobo backup keeps crashing. I can provide the full dump if you wish. However, the first few lines are: Process: backupd 839? Path: /System/Library/CoreServices?/backupd Identifier: backupd Version: ??? (???) Code Type: X86 (Native) Parent Process: launchd 1?
+
+Date/Time: 2009-05-18 21:53:43.518 -0400 OS Version: Mac OS X 10.5.7 (9J61) Report Version: 6 Anonymous UUID: 9530B47A-3AEF-4078-BA89-EA4C4907F91D
+
+Exception Type: EXC_BREAKPOINT (SIGTRAP) Exception Codes: 0x0000000000000002, 0x0000000000000000 Crashed Thread: 1
+
+Application Specific Information: Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: ' -_getValue:forType:?: unrecognized selector sent to instance 0x514240'
+
+I believe that I have followed the instructions to the letter. I can see DroboCapsule? in the finder, there is a sparse bundle called Regs-MacBook?_0016cb8f28a9.sparsebundle, I am running OSX 10.5.7, and the symbolic link /mnt/DroboShare?/Drobo/DroboApps?/ maps correctly. When I run TimeMachine?, it starts "preparing backup" and then dies. Although it may not be significant, the desktop icon for the DroboCapsule? is not the TimeMachine? icon. The same thing happens whether I eject DroboCapsule? or not. However, after I eject it, TimeMachine?'s Preference dialog shows the name of the backup volume as DroboCapsule?-1, but the name is grayed out.
+
+Any help would be appreciated.
+
+Reg. Charney
