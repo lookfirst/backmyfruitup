@@ -3,6 +3,10 @@
 
 <wiki:gadget url="http://drobocapsule.googlecode.com/svn/wiki/adsense2.xml" border="0" width="468" height="60" />
 
+= UPDATE =
+
+I am working on releasing a new version of BackMyFruitUp as soon as possible. This version has the latest versions of all of the software used in it. I have also enabled the ability to configure netatalk to start up and run as root. If you are having problems getting the current version to run properly, please subscribe to the [http://groups.google.com/group/backmyfruitup google group] so that you are notified of new releases.
+
 = Introduction =
 
 Apple makes it very difficult to use TimeMachine to backup to anything other than the expensive proprietary  TimeCapsule. This project enables one to use TimeMachine to backup to a Drobo/DroboShare over AFP via netatalk. This project is fully tested and stable. Multiple machines can be backed up to the same Drobo using different sparsebundles for each machine.
