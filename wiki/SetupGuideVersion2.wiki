@@ -48,7 +48,7 @@ http://backmyfruitup.googlecode.com/svn/wiki/properly-expanded.png
 
 = Upgrade =
 
-If you are upgrading from the previous version of BackMyFruitUp, all you need to do is first rename the existing netatalk folder to something else. Copy over the new netatalk.tgz and then restart your DroboShare using the DroboAdmin webpage. Please note that netatalk now runs as root by default. This will allow you to access all of your SMB files without problems.
+If you are upgrading from the previous version of BackMyFruitUp, all you need to do is first rename the existing netatalk folder to something else. Copy over the new netatalk.tgz and then restart your DroboShare using the DroboAdmin webpage. Please note that netatalk now runs as root by default. This will allow you to access all of your SMB files without problems. Once you have restarted, you can safely delete the older netatalk folder.
 
 = Disable annoying message =
 
