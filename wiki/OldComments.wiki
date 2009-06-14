@@ -1,3 +1,4 @@
+#labels Deprecated
 This is a page of comments which used to be at the end of the SetupGuide. There is some useful information in here that I wanted to archive. I turned off comments because I created a [http://groups.google.com/group/backmyfruitup discussion group] instead. It is a better way of getting support because it is searchable.
 
 ----
