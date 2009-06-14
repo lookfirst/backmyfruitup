@@ -50,6 +50,48 @@ http://backmyfruitup.googlecode.com/svn/wiki/properly-expanded.png
 
 If you are upgrading from the previous version of BackMyFruitUp, all you need to do is first rename the existing netatalk folder to something else. Copy over the new netatalk.tgz and then restart your DroboShare using the DroboAdmin webpage. Please note that netatalk now runs as root by default. This will allow you to access all of your SMB files without problems. Once you have restarted, you can safely delete the older netatalk folder.
 
+= Removal =
+
+Same with upgrade. Rename the folder, restart. Delete the folder after a restart.
+
+= Common problems =
+
+ * If TimeMachine immediately turns off after selecting a volume and you see the error message below in the Console.app's logs, then open up the Keychain Access.app, search for Drobo and delete whatever key is there.
+
+{{{
+System Preferences[565] Time Machine: Error -25299 while storing password in keychain for username:  serverURL: 
+afp://;AUTH=No%20User%20Authent@DroboCapsule._afpovertcp._tcp.local/DroboCapsule 
+}}}
+
+ * If TimeMachine fails to backup after a successful backup with the error (The backup volume could not be mounted.), MAKE SURE the DroboCapsule volume is not mounted. Click the little eject button next to it. It is fine to mount the Drobo volume at any time. It is also fine to mount the DroboCapsule volume AFTER TimeMachine has started. Just make sure it isn't mounted before TimeMachine starts up.
+
+ * I've heard of cases where an error below will show up in the Console.app log when trying to connect to the server and the connection will fail. If this happens, ensure nobody is connected to the server or trying to connect. Then, log into the DroboShare over ssh and {{{cd /mnt/DroboShares/Drobo; rm -rf .AppleDesktop .AppleDouble}}}. It seems that occasionally these two directories full of files can sometimes get corrupted. Removing these folders fixes that problem and doesn't seem to affect anything else.
+
+{{{
+/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder[173]
+StatusMonitor::volumesChangedCallBack returned -47
+}}}
+
+= Details for Full System Restore =
+
+A full system restore has been successfully tested using this system. Note, this will erase the machine you are restoring to and install a backed up image onto it. You can even choose at which point in time you would like to restore from. A full restore of my ~15gig laptop took about 30 minutes over a 100mbit wired ethernet connection. In order to do the restore, please follow the steps below.
+
+#1. Boot up from your OSX 10.5 installation dvd.
+
+#2. Select Terminal from the Utilities menu.
+
+#3. Mount the Drobo drive on your machine by typing the following into the Terminal window exactly as shown while replacing IPADDRESS with the actual IP address of your DroboShare: 
+
+{{{ mkdir /Volumes/DroboCapsule ; mount -t afp afp://IPADDRESS/DroboCapsule /Volumes/DroboCapsule }}}
+
+#4. Quit Terminal and then select "Restore System From Backup..." in the Utilities menu.
+
+#5. Your backups should show up and you can just follow the standard steps for a restore.
+
+= Support =
+
+There is a [http://groups.google.com/group/backmyfruitup google group] setup for discussion. Please make sure that you read all of the archives first before posting any questions.
+
 = Disable annoying message =
 
 To turn off the annoying message, all you need to do is rename the MESSAGE.txt file to anything else.
