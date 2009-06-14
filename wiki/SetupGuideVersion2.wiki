@@ -1,8 +1,6 @@
 #summary This is the setup guide for the DroboCapsule
-#sidebar TableOfContents
 
 <wiki:gadget url="http://drobocapsule.googlecode.com/svn/wiki/adsense2.xml" border="0" width="468" height="60" />
-
 
 = Introduction =
 
@@ -47,3 +45,13 @@ http://backmyfruitup.googlecode.com/svn/wiki/properly-expanded.png
 #3. Log out of the Finder and log back in.
 
 #4. Open up TimeMachine in System Preferences, Change Disk to DroboCapsule. If you don't see DroboCapsule, then click on it in the Finder to mount it as a guest user. Now, start a backup. It should fail the first time. Eject the DroboCapsule share and start another backup again. This one should succeed. Remember, if you are on wireless, the first backup will take a long time. Sometimes it is better to just plug the machine in to a hub and back up the first time.
+
+= Upgrade =
+
+If you are upgrading from the previous version of BackMyFruitUp, all you need to do is first rename the existing netatalk folder to something else. Copy over the new netatalk.tgz and then restart your DroboShare using the DroboAdmin webpage. Please note that netatalk now runs as root by default. This will allow you to access all of your SMB files without problems.
+
+= Disable annoying message =
+
+To turn off the annoying message, all you need to do is rename the MESSAGE.txt file to anything else.
+
+http://backmyfruitup.googlecode.com/svn/wiki/message-no-more.png
