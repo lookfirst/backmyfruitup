@@ -94,6 +94,6 @@ There is a [http://groups.google.com/group/backmyfruitup google group] setup for
 
 = Disable annoying message =
 
-To turn off the annoying message, all you need to do is rename the MESSAGE.txt file to anything else.
+To turn off the annoying message, all you need to do is rename the MESSAGE.txt file to anything else. You can also edit the file and put your own message there.
 
 http://backmyfruitup.googlecode.com/svn/wiki/message-no-more.png
