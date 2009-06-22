@@ -27,6 +27,8 @@ http://backmyfruitup.googlecode.com/svn/wiki/ssh-example.png
 
 Confirm that the path to your DroboApps folder is this: {{{ /mnt/DroboShares/Drobo/DroboApps }}}. This is required for netatalk to install properly. The reason is because there is so many hard coded paths in the configuration files that it would be a real nightmare to try to make this any more dynamic than it is. If it is not this directory structure, you will need to use the beta release of [http://www.drobospace.com/group/23/Drobo-Dashboard-Public-Beta/ Drobo Dashboard] to rename your Drobo volume.
 
+*Please note:* If you can't get the naming correct, then there isn't much I can do to help you. You can either try making a single large partition for your Drobo (which is when I see people generally having this problem) or I suggest contacting the Drobo support staff.
+
 #3. Download and install the BackMyFruitUp 2.0 package from the Downloads tab above. Do not expand the enclosed netatalk.tgz file.
 
 #4. Install netatalk.tgz by coping the file into your DroboApps folder. You will need to restart the DroboShare to get things running. It is easiest to do do a restart by using the DroboAdmin webpage.
