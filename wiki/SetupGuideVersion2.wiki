@@ -73,6 +73,8 @@ afp://;AUTH=No%20User%20Authent@DroboCapsule._afpovertcp._tcp.local/DroboCapsule
 StatusMonitor::volumesChangedCallBack returned -47
 }}}
 
+ * If you are experiencing slow copies or backups, it is probably because you have antivirus software installed. Either disable it or somehow tell it to not check files during backups.
+
 = Details for Full System Restore =
 
 A full system restore has been successfully tested using this system. Note, this will erase the machine you are restoring to and install a backed up image onto it. You can even choose at which point in time you would like to restore from. A full restore of my ~15gig laptop took about 30 minutes over a 100mbit wired ethernet connection. In order to do the restore, please follow the steps below.
@@ -88,6 +90,12 @@ A full system restore has been successfully tested using this system. Note, this
 #4. Quit Terminal and then select "Restore System From Backup..." in the Utilities menu.
 
 #5. Your backups should show up and you can just follow the standard steps for a restore.
+
+= Users/groups permissions =
+
+This is left as an excercise for the reader. It is entirely possible to set this up, but will require reading and understanding the netatalk documentation. You will also need some knowledge of how to create and manage unix users and groups.
+
+_Please note that it is not recommended to use this solution to do this._ The primary goal of BackMyFruitUp is only to provide an inexpensive/low power way to do TM backups and file access to a small number of users in a home/small office setting. The DroboShare is not a high performance file server at all and using a solution like this for doing that is kind of the wrong tool for the wrong job. If you want a much better, but still inexpensive tool, I'd suggest getting a Mac Mini and plugging your Drobo into that. You will also get a nice user interface for managing users and can integrate that into a central authentication store.
 
 = Support =
 
