@@ -30,10 +30,9 @@ Confirm that the path to your DroboApps folder is this: {{{ /mnt/DroboShares/Dro
 These command should also work to set the path if you don't have the above path:
 
 {{{
-cd /mnt/DroboShares
 ls -la /mnt/DroboShares
 (take note of the name of the folder in this directory listing)
-ln -s NAME_FROM_LINE_ABOVE Drobo
+ln -s /mnt/DroboShares/NAME_FROM_LINE_ABOVE /mnt/DroboShares/Drobo
 }}}
 
 *Please note:* If you can't get the naming correct, then there isn't much I can do to help you. You can either try making a single large partition for your Drobo (which is when I see people generally having this problem) or I suggest contacting the Drobo support staff.
