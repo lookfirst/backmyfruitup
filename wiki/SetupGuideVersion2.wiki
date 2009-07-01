@@ -27,7 +27,7 @@ http://backmyfruitup.googlecode.com/svn/wiki/ssh-example.png
 
 Confirm that the path to your DroboApps folder is this: {{{ /mnt/DroboShares/Drobo/DroboApps }}}. This is required for netatalk to install properly. The reason is because there is so many hard coded paths in the configuration files that it would be a real nightmare to try to make this any more dynamic than it is. If it is not this directory structure, you will need to use the beta release of [http://www.drobospace.com/group/23/Drobo-Dashboard-Public-Beta/ Drobo Dashboard] to rename your Drobo volume.
 
-These command should work to set the path if you don't have the above path:
+These command should also work to set the path if you don't have the above path:
 
 {{{
 cd /mnt/DroboShares
