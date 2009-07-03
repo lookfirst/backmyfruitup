@@ -1,0 +1,7 @@
+I'm going to try something a little different. Times are tough and my time is valuable. In order to compensate me for my time working on porting nzbget to the DroboShare, please donate $25 to my paypal account. Once the donation is received, I will immediately email you a copy of the binary which is all setup to run on your DroboShare.
+
+Click the button below (note: a paypal account is not required to donate):
+
+<wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donatenzbget.xml" border="0" width="140" height="70" />
+
+Thank you.
