@@ -109,7 +109,12 @@ _Please note that it is not recommended to use this solution to do this._ The pr
 
 = Support =
 
-There is a [http://groups.google.com/group/backmyfruitup google group] setup for discussion. Please make sure that you read all of the archives first before posting any questions.
+There is a [http://groups.google.com/group/backmyfruitup google group] setup for discussion.
+
+  * Please make sure that you read all of the [http://groups.google.com/group/backmyfruitup archives] first before posting any questions.
+  * If you haven't figured out your problem from the archives, then please make sure to give as much information as possible about what you have done in setup.
+  * Include output of 'ps' and 'ls -la' when showing what is running on your DroboShare and paths to things. Include any relevant lines from Console.app.
+  * You will most likely get a faster and more complete response if you remember to donate. I created this project in my spare time. It works fine for me and many other people. Supporting your issues takes even more time and energy, so donations keep me motivated to help you.
 
 = Disable annoying message =
 
