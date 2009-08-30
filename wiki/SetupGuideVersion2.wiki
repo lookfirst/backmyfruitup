@@ -107,6 +107,9 @@ StatusMonitor::volumesChangedCallBack returned -47
 
  * If you are experiencing slow copies or backups, it is probably because you have antivirus software installed. Either disable it or somehow tell it to not check files during backups.
 
+ * According to [http://developer.apple.com/mac/library/documentation/NetworkingInternetWeb/Conceptual/TimeMachineNetworkInterfaceSpecification/TimeMachineRequirements/TimeMachineRequirements.html#//apple_ref/doc/uid/TP40008951-CH100-SW1 Apple's documentation], it is important not to store other files on the DroboCapsule -> DroboCapsule share point other than the sparse images. If you need to put files on the server, put them in the DroboCapsule -> Drobo share point.
+
+
 = Support =
 
 There is a [http://groups.google.com/group/backmyfruitup google group] setup for discussion.
