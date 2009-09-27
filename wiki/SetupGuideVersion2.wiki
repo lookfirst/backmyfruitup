@@ -21,7 +21,7 @@ Note: I take no responsibility if this software destroys your applications or yo
 
 #3. Open Terminal.app and log into your DroboShare via SSH. ssh root@[YOUR DROBO IP HERE]. ex: ssh root@192.168.1.32
 
-_Note: the default root password is stored in the Important Information tab of the DroboAdmin website._
+_Note: the default root password is stored in the Important Information tab of the DroboAdmin website. See ReadMe.pdf enclosed with the Drobo Admin download for more details._ 
 
 http://backmyfruitup.googlecode.com/svn/wiki/ssh-example.png
 
