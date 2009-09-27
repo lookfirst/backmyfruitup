@@ -81,7 +81,7 @@ Same with upgrade. Rename the folder, restart. Delete the folder after a restart
 
 A full system restore has been successfully tested using this system. Note, this will erase the machine you are restoring to and install a backed up image onto it. You can even choose at which point in time you would like to restore from. A full restore of my ~15gig laptop took about 30 minutes over a 100mbit wired ethernet connection. In order to do the restore, please follow the steps below.
 
-#1. Boot up from your OSX 10.5 installation dvd.
+#1. Boot up from your OSX 10.5 / 10.6 installation dvd.
 
 #2. Select Terminal from the Utilities menu.
 
