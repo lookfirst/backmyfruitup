@@ -41,9 +41,9 @@ ln -s /mnt/DroboShares/NAME_FROM_LINE_ABOVE /mnt/DroboShares/Drobo
 
 #4. Install netatalk.tgz by coping the file into your DroboApps folder. You will need to restart the DroboShare to get things running. It is easiest to do do a restart by using the DroboAdmin webpage.
 
-_ NOTE: Drobo Dashboard has a bug with 10.6.1 that prevents the DroboShare
+_ NOTE: Drobo Dashboard 1.5.1 has a bug with 10.6.1 that prevents the DroboShare
 mount from automatically showing up. You can work around this by hitting command-k 
-and typing smb://IP_ADDRESS_OF_YOUR_DROBO_HERE _
+and typing smb://IP_ADDRESS_OF_YOUR_DROBO_HERE and choosing to connect as a Guest user._
 
 http://backmyfruitup.googlecode.com/svn/wiki/tgz-in-folder.png
 
