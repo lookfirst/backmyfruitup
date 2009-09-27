@@ -41,6 +41,10 @@ ln -s /mnt/DroboShares/NAME_FROM_LINE_ABOVE /mnt/DroboShares/Drobo
 
 #4. Install netatalk.tgz by coping the file into your DroboApps folder. You will need to restart the DroboShare to get things running. It is easiest to do do a restart by using the DroboAdmin webpage.
 
+_ NOTE: Drobo Dashboard has a bug with 10.6.1 that prevents the DroboShare
+mount from automatically showing up. You can work around this by hitting command-k 
+and typing smb://IP_ADDRESS_OF_YOUR_DROBO_HERE _
+
 http://backmyfruitup.googlecode.com/svn/wiki/tgz-in-folder.png
 
 Once the DroboShare is restarted, the netatalk.tgz file will convert into a netatalk folder. This should cause 'DroboCapsule' to appear in the Finder under the SHARED heading next to the DrobShare heading. It should have an icon like an XServe server.
@@ -49,7 +53,15 @@ http://backmyfruitup.googlecode.com/svn/wiki/properly-expanded.png
 
 = Details for TimeMachine Setup =
 
-#1. From a Finder window click on the DroboCapsule in the Shared list and mount it as guest.  You should see two volumes, one titled Drobo and another titled DroboCapsule.  These are mount points via AFP. They differ from the mount via the Drobo Dashboard called Drobo, which uses SMB.  Load the DroboCapsule volume from the mount point. This is where you will put the sparsebundle that will be created in the next step.
+#1. From a Finder window click on the DroboCapsule in the Shared list
+and mount it as guest.  You should see two volumes, one titled Drobo and
+another titled DroboCapsule (see image below).  These are mount points via AFP. They
+differ from the mount via the Drobo Dashboard called DroboShare, which uses
+SMB (see note above about 10.6.1 bug). Load the DroboCapsule volume from the mount 
+point. This is where you will put the sparsebundle that will be created
+in the next step.
+
+http://backmyfruitup.googlecode.com/svn/wiki/drobocapsule_mounts.png
 
 #2. Run the Create Backup Volume application included in the BackMyFruitUp 2.0 download folder. It will ask you for the maximum size of the volume and will create a new sparsebundle on your desktop. This will take a few minutes to run. After it is finished, copy the sparsebundle to the DroboCapsule share and delete it from your desktop. Note: You will need to run this application on each Mac that you want to backup.
 
