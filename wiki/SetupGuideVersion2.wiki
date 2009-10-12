@@ -110,12 +110,9 @@ afp://;AUTH=No%20User%20Authent@DroboCapsule._afpovertcp._tcp.local/DroboCapsule
 
  * If TimeMachine fails to backup after a successful backup with the error (The backup volume could not be mounted.), MAKE SURE the DroboCapsule volume is not mounted. Click the little eject button next to it. It is fine to mount the Drobo volume at any time. It is also fine to mount the DroboCapsule volume AFTER TimeMachine has started. Just make sure it isn't mounted before TimeMachine starts up.
 
- * I've heard of cases where an error below will show up in the Console.app log when trying to connect to the server and the connection will fail. If this happens, ensure nobody is connected to the server or trying to connect. Then, log into the DroboShare over ssh and {{{cd /mnt/DroboShares/Drobo; rm -rf .AppleDesktop .AppleDouble}}}. It seems that occasionally these two directories full of files can sometimes get corrupted. Removing these folders fixes that problem and doesn't seem to affect anything else.
+ * Sometimes netatalk can get into a funk. Especially if the DroboShare goes down during a copy. The symptom is that when trying to connect to the server the connection will fail (even though it was working fine before). If this happens, ensure nobody is connected to the server or trying to connect. Then, log into the DroboShare over ssh and {{{cd /mnt/DroboShares/Drobo; rm -rf .AppleDB .AppleDesktop .AppleDouble}}}. You may also have to remove these directories from the DroboCapsule folder as well. It seems that occasionally these directories full of files can sometimes get corrupted. Removing these folders fixes that problem and doesn't seem to affect anything else. Here is a screen shot example of deleting those folders...
 
-{{{
-/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder[173]
-StatusMonitor::volumesChangedCallBack returned -47
-}}}
+http://backmyfruitup.googlecode.com/svn/wiki/delete_apple_folders.png
 
  * If you are experiencing slow copies or backups, it is probably because you have antivirus software installed. Either disable it or somehow tell it to not check files during backups.
 
