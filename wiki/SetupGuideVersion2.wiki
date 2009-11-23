@@ -15,7 +15,7 @@ Note: I take no responsibility if this software destroys your applications or yo
 
 = Installation =
 
-#1. You must be using ext3 or HFS+ as your filesystem on your Drobo. I personally use HFS+. The reason is because NTFS and FAT32 do not support symbolic links properly. This will prevent BackMyFruitUp from working.
+#1. You should be using ext3 as your filesystem on your Drobo. The reason is because NTFS and FAT32 do not support symbolic links properly and the Linux implementation of HFS+ (what is running on the DroboShare) has a bug with deleting files as well as resource forks. If you are *only* using your Drobo for storing TimeMachine backups, you are safe with HFS+.
 
 #2. Install the [http://drobo.com/droboapps/downloads/index.php?id=19 DroboApps Admin] package using the standard [http://drobo.com/droboapps/faq/index.html DroboApps installation instructions]. Once you have the admin package installed, make sure to also install [http://www.drobo.com/droboapps/downloads/index.php?id=18 Dropbear SSH] and [http://www.drobo.com/droboapps/downloads/index.php?id=9 Add Swap Memory]. Both of these are easily installed from the Admin package.
 
