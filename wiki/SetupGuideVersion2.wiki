@@ -135,7 +135,7 @@ There is a [http://groups.google.com/group/backmyfruitup google group] setup for
 
 = Disable annoying message =
 
-First, don't forget to donate some of your hard earned cash to me for spending so much time on this project. Any amount is fine.
+First, don't forget to donate some of your hard earned cash to me for spending so much time on this project. Any amount is fine. For all of the people who email me asking how to disable this message, it pays to read all of the documentation first. =)
 
 To turn off the annoying message, all you need to do is rename the MESSAGE.txt file to anything else and then reboot your DroboShare. You can also edit the file and put your own message there.
 
