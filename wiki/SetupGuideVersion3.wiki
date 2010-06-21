@@ -15,22 +15,25 @@ Note: I take no responsibility if this software destroys your applications or yo
 
 = Installation =
 
-#1. For the best results, you should be using ext3 as your filesystem on your Drobo. There is a caveat in that you won't be able to run Disk Utility on your Drobo unless you purchase a [http://www.paragon-software.com/home/extfs-mac/ $40 piece of software]. 
+== Drive Formatting Considerations ==
+For the best results, you should be using ext3 as your filesystem on your Drobo. There is a caveat in that you won't be able to run Disk Utility on your Drobo unless you purchase a [http://www.paragon-software.com/home/extfs-mac/ $40 piece of software]. 
 I also haven't tested this.
 
 NTFS and FAT32 do not support symbolic links properly, so they won't work. The Linux implementation of HFS+ (what is running on the DroboShare) has a bug with deleting files as well as with resource forks. So, the only way to free up deleted space on your Drobo for files that have been deleted with BackMyFruitUp, is to run Disk Utility.
 
 If you are *only* using your Drobo for storing TimeMachine backups, you are pretty safe with HFS+. I use this solution because I don't delete files on my Drobo and I only use it for TM.
 
-#2. Install the [http://drobo.com/droboapps/downloads/index.php?id=19 DroboApps Admin] package using the standard [http://drobo.com/droboapps/faq/index.html DroboApps installation instructions]. Once you have the admin package installed, make sure to also install [http://www.drobo.com/droboapps/downloads/index.php?id=18 Dropbear SSH] and [http://www.drobo.com/droboapps/downloads/index.php?id=9 Add Swap Memory]. Both of these are easily installed from the Admin package.
+== Install DroboAdmin ==
+Install the [http://drobo.com/droboapps/downloads/index.php?id=19 DroboApps Admin] package using the standard [http://drobo.com/droboapps/faq/index.html DroboApps installation instructions]. Once you have the admin package installed, make sure to also install [http://www.drobo.com/droboapps/downloads/index.php?id=18 Dropbear SSH] and [http://www.drobo.com/droboapps/downloads/index.php?id=9 Add Swap Memory]. Both of these are easily installed from the Admin package.
 
-#3. Open Terminal.app and log into your DroboShare via SSH. ssh root@[YOUR DROBO IP HERE]. ex: ssh root@192.168.1.32
+== Confirm the DroboApps Folder Path ==
+Open Terminal.app and log into your DroboShare via SSH. ssh root@[YOUR DROBO IP HERE]. ex: ssh root@192.168.1.32
 
 _Note: the default root password is stored in the Important Information tab of the DroboAdmin website. See ReadMe.pdf enclosed with the Drobo Admin download for more details._ 
 
 http://backmyfruitup.googlecode.com/svn/wiki/ssh-example.png
 
-Confirm that the path to your DroboApps folder is this: {{{ /mnt/DroboShares/Drobo/DroboApps }}}. *This is required for BackMyFruitUp to install properly.* The reason is because there is so many hard coded paths in the configuration files that it would be a real nightmare to try to make this any more dynamic than it is. If it is not this directory structure, you will need to use the latest >1.5.1 release of [http://drobo.com/support/updates.php Drobo Dashboard] to rename your Drobo volume.
+Confirm that the path to your DroboApps folder is this: {{{ /mnt/DroboShares/Drobo/DroboApps }}}. *This is required for BackMyFruitUp to install properly.* The reason is because there is so many hard coded paths in the configuration files that it would be a real nightmare to try to make this any more dynamic than it is. If it is not this directory structure, you will need to use the latest >1.6.8 release of [http://drobo.com/support/updates.php Drobo Dashboard] to rename your Drobo volume.
 
 These command should also work to set the path if you don't have the above path:
 
@@ -42,13 +45,11 @@ ln -s /mnt/DroboShares/NAME_FROM_LINE_ABOVE /mnt/DroboShares/Drobo
 
 *Please note:* If you can't get the naming correct, then there isn't much I can do to help you. You can either try making a single large partition for your Drobo (which is when I see people generally having this problem) or I suggest contacting the Drobo support staff.
 
-#3. Download and install the BackMyFruitUp 2.0 package from the Downloads tab above. Do not expand the enclosed netatalk.tgz file.
+== Get BackMyFruitUp ==
+If you have not already done so, download and install the BackMyFruitUp 2.0 package from the Downloads tab above. Do not expand the enclosed netatalk.tgz file.
 
-#4. Install netatalk.tgz by coping the file into your DroboApps folder. You will need to restart the DroboShare to get things running. It is easiest to do do a restart by using the DroboAdmin webpage.
-
-_ NOTE: Drobo Dashboard 1.5.1 has a bug with 10.6.1 that prevents the DroboShare
-mount from automatically showing up. You can work around this by hitting command-k 
-and typing smb://IP_ADDRESS_OF_YOUR_DROBO_HERE and choosing to connect as a Guest user._
+== Install BackMyFruitUp ==
+Install netatalk.tgz by coping the file into your DroboApps folder. You will need to restart the DroboShare to get things running. It is easiest to do do a restart by using the DroboAdmin webpage.
 
 http://backmyfruitup.googlecode.com/svn/wiki/tgz-in-folder.png
 
@@ -58,25 +59,53 @@ http://backmyfruitup.googlecode.com/svn/wiki/properly-expanded.png
 
 = Details for TimeMachine Setup =
 
-#1. From a Finder window click on the DroboCapsule in the Shared list
+== Locate the DroboCapsule mount ==
+From a Finder window click on the DroboCapsule in the Shared list
 and mount it as guest.  You should see two volumes, one titled Drobo and
 another titled DroboCapsule (see image below).  These are mount points via AFP. They
 differ from the mount via the Drobo Dashboard called DroboShare, which uses
-SMB (see note above about 10.6.1 bug). Load the DroboCapsule volume from the mount 
-point. This is where you will put the sparsebundle that will be created
-in the next step.
+SMB. Load the DroboCapsule volume from the mount point. This is where you will put the 
+sparsebundle that will be created in the next step.
 
 http://backmyfruitup.googlecode.com/svn/wiki/drobocapsule_mounts.png
 
-#2. Run the Create Backup Volume application included in the BackMyFruitUp 2.0 download folder. It will ask you for the maximum size of the volume and will create a new sparsebundle on your desktop. This will take a few minutes to run. After it is finished, copy the sparsebundle to the DroboCapsule share and delete it from your desktop. Note: You will need to run this application on each Mac that you want to backup.
+== Setup BackMyFruitUp ==
+This part is new in 3.0. OSX 10.6 introduced a change to the way TM backups work. Previously, it was possible to create a sparsebundle of a specific size and that would limit the size of the backup. The new change is that TM will automatically resize the sparsebundle to be the maximum size of the volume it is on. Therefore, there is a new option to netatalk which allows you to define the size of the volume. To do this, you need to edit the AppleVolumes.default configuration file by hand using your favorite text editor (TextEdit works fine). It is located in the directory tree outlined in the image below.
 
-#3. Log out of the Finder and log back in.
+http://backmyfruitup.googlecode.com/svn/wiki/applevolumes_default.png
 
-#4. Open up TimeMachine in System Preferences, Change Disk to DroboCapsule. If you don't see DroboCapsule, then click on it in the Finder to mount it as a guest user. Now, start a backup. It should fail the first time. Eject the DroboCapsule share and start another backup again. This one should succeed. Remember, if you are on wireless, the first backup will take a long time. Sometimes it is better to just plug the machine in to a hub and back up the first time.
+At the very bottom of the file, the important lines are:
+
+{{{
+/mnt/DroboShares/Drobo/DroboCapsule "DroboCapsule" options:usedots,invisibledots,tm volsizelimit:650000
+/mnt/DroboShares/Drobo Drobo options:usedots,invisibledots veto:/DroboCapsule/
+}}}
+
+At the end, it shows the DroboCapsule volume has been limited in size to 650gigs. This is the default size that I've configured for BackMyFruitUp and you can change this to be any size assuming you have enough space on your Drobo. When choosing a size, you should consider the total amount of space for all of your backups.
+
+Please note, I haven't tested changing the volsizelimit value once backups have been started. I don't think it is wise to make it a smaller number.
+
+Once you change this file, you should restart your DroboShare using the DroboAdmin application in order to make the changes take effect.
+
+== Run Create Backup Volume ==
+Run the Create Backup Volume (CBV) application included in the BackMyFruitUp 3.0 download folder. It will ask you for the size of the volume and will create a new sparsebundle on your desktop. You should set this to a size which is about 100megs larger than the amount of space used on the drive you are backing up. This will take a few minutes to run.
+
+After it is finished, copy the sparsebundle to the DroboCapsule share and delete it from your desktop. Note: You will need to run the CBV application on each Mac that you want to backup.
+
+In the end, the size doesn't really matter because as I said before, TM will resize your sparsebundle to be the maximum size of the volume.
+
+It is very important to use my CBV application to create the sparsebundle because the default one created with TM has a band size of only 8mb (mine uses 64meg bands). This causes a whole bunch of small files to be created on the Drobo and performance will suffer greatly as a result. In fact, I wasn't even able to get a backup to succeed with the 8meg band size.
+
+== Setup TimeMachine ==
+Open up TimeMachine in System Preferences, Change Disk to DroboCapsule. If you don't see DroboCapsule, then click on it in the Finder to mount it as a guest user. 
+
+http://backmyfruitup.googlecode.com/svn/wiki/tm-selection.png
+
+Remember, if you are on wireless, the first backup will take a long time. Sometimes it is better to just plug the machine in to a hub and back up the first time.
 
 = Upgrade =
 
-If you are upgrading from the previous version of BackMyFruitUp, all you need to do is first rename the existing netatalk folder to something else. Copy over the new netatalk.tgz and then restart your DroboShare using the DroboAdmin webpage. Please note that netatalk now runs as root by default. This will allow you to access all of your SMB files without problems. Once you have restarted, you can safely delete the older netatalk folder.
+If you are upgrading from the previous version of BackMyFruitUp, all you need to do is first rename the existing netatalk folder to something else. Copy over the new netatalk.tgz and then restart your DroboShare using the DroboAdmin webpage. Please note that netatalk now runs as root by default. This will allow you to access all of your SMB files without problems. Once you have restarted and you have verified things are working, you can safely delete the older netatalk folder.
 
 = Removal =
 
