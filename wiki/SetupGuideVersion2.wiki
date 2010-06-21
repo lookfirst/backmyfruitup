@@ -1,5 +1,4 @@
 #summary This is the setup guide for the DroboCapsule
-#labels Featured
 
 <wiki:gadget url="http://drobocapsule.googlecode.com/svn/wiki/adsense2.xml" border="0" width="468" height="60" />
 
