@@ -5,7 +5,7 @@
 
 <wiki:toc max_depth="2" />
 
-= Introduction =
+= {{{Introduction}}} =
 
 Apple makes it very difficult to use TimeMachine to backup to anything other than the expensive proprietary  TimeCapsule. This project enables one to use TimeMachine to backup to a Drobo/DroboShare over AFP via netatalk. This project is fully tested and stable. Multiple machines can be backed up to the same Drobo using different sparsebundles for each machine.
 
@@ -15,9 +15,9 @@ Note: I take no responsibility if this software destroys your applications or yo
 
 <wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donate.xml" border="0" width="140" height="70" />
 
-= Installation =
+= {{{Installation}}} =
 
-== Drive Formatting Considerations ==
+== {{{Drive Formatting Considerations}}} ==
 For the best results, you should be using ext3 as your filesystem on your Drobo. There is a caveat in that you won't be able to run Disk Utility on your Drobo unless you purchase a [http://www.paragon-software.com/home/extfs-mac/ $40 piece of software]. 
 I also haven't tested this.
 
@@ -89,12 +89,12 @@ Please note, I haven't tested changing the volsizelimit value once backups have 
 
 Once you change this file, you should restart your DroboShare using the DroboAdmin application in order to make the changes take effect.
 
-== Run Create Backup Volume ==
+== {{{Run Create Backup Volume}}} ==
 Run the Create Backup Volume (CBV) application included in the BackMyFruitUp 3.0 download folder. It will ask you for the size of the volume and will create a new sparsebundle on your desktop. You should set this to a size which is about 100megs larger than the amount of space used on the drive you are backing up. This will take a few minutes to run.
 
 After it is finished, copy the sparsebundle to the DroboCapsule share and delete it from your desktop. Note: You will need to run the CBV application on each Mac that you want to backup.
 
-In the end, the size doesn't really matter because as I said before, TM will resize your sparsebundle to be the maximum size of the volume.
+In the end, the size doesn't really matter {{{;-)}}}. As I said before, TM will resize your sparsebundle to be the maximum size of the volume.
 
 It is very important to use my CBV application to create the sparsebundle because the default one created with TM has a band size of only 8mb (mine uses 64meg bands). This causes a whole bunch of small files to be created on the Drobo and performance will suffer greatly as a result. In fact, I wasn't even able to get a backup to succeed with the 8meg band size.
 
@@ -105,15 +105,17 @@ http://backmyfruitup.googlecode.com/svn/wiki/tm-selection.png
 
 Remember, if you are on wireless, the first backup will take a long time. Sometimes it is better to just plug the machine in to a hub and back up the first time.
 
-= Upgrade =
+Now, start a backup as normal.
+
+= {{{Upgrade}}} =
 
 If you are upgrading from the previous version of BackMyFruitUp, all you need to do is first rename the existing netatalk folder to something else. Copy over the new netatalk.tgz and then restart your DroboShare using the DroboAdmin webpage. Please note that netatalk now runs as root by default. This will allow you to access all of your SMB files without problems. Once you have restarted and you have verified things are working, you can safely delete the older netatalk folder.
 
-= Removal =
+= {{{Uninstall}}} =
 
 Same with upgrade. Rename the folder, restart. Delete the folder after a restart.
 
-= Details for Full System Restore =
+= {{{Full System Restore}}} =
 
 A full system restore has been successfully tested using this system. Note, this will erase the machine you are restoring to and install a backed up image onto it. You can even choose at which point in time you would like to restore from. A full restore of my ~15gig laptop took about 30 minutes over a 100mbit wired ethernet connection. In order to do the restore, please follow the steps below.
 
@@ -129,13 +131,13 @@ A full system restore has been successfully tested using this system. Note, this
 
 #5. Your backups should show up and you can just follow the standard steps for a restore.
 
-= Users/groups permissions =
+= {{{Users/groups permissions}}} =
 
 This is left as an excercise for the reader. It is entirely possible to set this up, but will require reading and understanding the netatalk documentation. You will also need some knowledge of how to create and manage unix users and groups.
 
 _Please note that it is not recommended to use this solution to do this._ The primary goal of BackMyFruitUp is only to provide an inexpensive/low power way to do TM backups and file access to a small number of users in a home/small office setting. The DroboShare is not a high performance file server at all and using a solution like this for doing that is kind of the wrong tool for the wrong job. If you want a much better, but still inexpensive tool, I'd suggest getting a Mac Mini and plugging your Drobo into that. You will also get a nice user interface for managing users and can integrate that into a central authentication store.
 
-= Common problems =
+= {{{Common problems}}} =
 
  * If TimeMachine immediately turns off after selecting a volume and you see the error message below in the Console.app's logs, then open up the Keychain Access.app, search for Drobo and delete whatever key is there.
 
@@ -154,8 +156,7 @@ http://backmyfruitup.googlecode.com/svn/wiki/delete_apple_folders.png
 
  * According to [http://developer.apple.com/mac/library/documentation/NetworkingInternetWeb/Conceptual/TimeMachineNetworkInterfaceSpecification/TimeMachineRequirements/TimeMachineRequirements.html#//apple_ref/doc/uid/TP40008951-CH100-SW1 Apple's documentation], it is important not to store other files on the DroboCapsule -> DroboCapsule share point other than the sparse images. If you need to put files on the server, put them in the DroboCapsule -> Drobo share point.
 
-
-= Support =
+= {{{Getting Help}}} =
 
 There is a [http://groups.google.com/group/backmyfruitup google group] setup for discussion.
 
@@ -164,7 +165,7 @@ There is a [http://groups.google.com/group/backmyfruitup google group] setup for
   * Include output of 'ps' and 'ls -la' when showing what is running on your DroboShare and paths to things. Include any relevant lines from Console.app.
   * You will most likely get a faster and more complete response if you remember to donate. I created this project in my spare time. It works fine for me and many other people. Supporting your issues takes even more time and energy, so donations keep me motivated to help you.
 
-= Disable annoying message =
+= {{{That annoying message}}} =
 
 First, don't forget to donate some of your hard earned cash to me for spending so much time on this project. Any amount is fine. For all of the people who email me asking how to disable this message, it pays to read all of the documentation first. =)
 
