@@ -50,7 +50,7 @@ ln -s /mnt/DroboShares/NAME_FROM_LINE_ABOVE /mnt/DroboShares/Drobo
 == Get Back My Fruit Up ==
 If you have not already done so, download and install the BackMyFruitUp 2.0 package from the Downloads tab above. Do not expand the enclosed netatalk.tgz file.
 
-== Install BackMyFruitUp ==
+== Install Back My Fruit Up ==
 Install netatalk.tgz by coping the file into your DroboApps folder. You will need to restart the DroboShare to get things running. It is easiest to do do a restart by using the DroboAdmin webpage.
 
 http://backmyfruitup.googlecode.com/svn/wiki/tgz-in-folder.png
