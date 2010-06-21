@@ -25,7 +25,7 @@ NTFS and FAT32 do not support symbolic links properly, so they won't work. The L
 
 If you are *only* using your Drobo for storing TimeMachine backups, you are pretty safe with HFS+. I use this solution because I don't delete files on my Drobo and I only use it for TM.
 
-== Install DroboAdmin ==
+== Install Drobo Admin ==
 Install the [http://drobo.com/droboapps/downloads/index.php?id=19 DroboApps Admin] package using the standard [http://drobo.com/droboapps/faq/index.html DroboApps installation instructions]. Once you have the admin package installed, make sure to also install [http://www.drobo.com/droboapps/downloads/index.php?id=18 Dropbear SSH] and [http://www.drobo.com/droboapps/downloads/index.php?id=9 Add Swap Memory]. Both of these are easily installed from the Admin package.
 
 == Confirm the DroboApps Folder Path ==
@@ -47,7 +47,7 @@ ln -s /mnt/DroboShares/NAME_FROM_LINE_ABOVE /mnt/DroboShares/Drobo
 
 *Please note:* If you can't get the naming correct, then there isn't much I can do to help you. You can either try making a single large partition for your Drobo (which is when I see people generally having this problem) or I suggest contacting the Drobo support staff.
 
-== Get BackMyFruitUp ==
+== Get Back My Fruit Up ==
 If you have not already done so, download and install the BackMyFruitUp 2.0 package from the Downloads tab above. Do not expand the enclosed netatalk.tgz file.
 
 == Install BackMyFruitUp ==
@@ -59,7 +59,7 @@ Once the DroboShare is restarted, the netatalk.tgz file will convert into a neta
 
 http://backmyfruitup.googlecode.com/svn/wiki/properly-expanded.png
 
-= Details for TimeMachine Setup =
+= Details for Time Machine Setup =
 
 == Locate the DroboCapsule mount ==
 From a Finder window click on the DroboCapsule in the Shared list
@@ -71,7 +71,7 @@ sparsebundle that will be created in the next step.
 
 http://backmyfruitup.googlecode.com/svn/wiki/drobocapsule_mounts.png
 
-== Setup BackMyFruitUp ==
+== Setup Back My Fruit Up ==
 This part is new in 3.0. OSX 10.6 introduced a change to the way TM backups work. Previously, it was possible to create a sparsebundle of a specific size and that would limit the size of the backup. The new change is that TM will automatically resize the sparsebundle to be the maximum size of the volume it is on. Therefore, there is a new option to netatalk which allows you to define the size of the volume. To do this, you need to edit the AppleVolumes.default configuration file by hand using your favorite text editor (TextEdit works fine). It is located in the directory tree outlined in the image below.
 
 http://backmyfruitup.googlecode.com/svn/wiki/applevolumes_default.png
@@ -98,7 +98,7 @@ In the end, the size doesn't really matter because as I said before, TM will res
 
 It is very important to use my CBV application to create the sparsebundle because the default one created with TM has a band size of only 8mb (mine uses 64meg bands). This causes a whole bunch of small files to be created on the Drobo and performance will suffer greatly as a result. In fact, I wasn't even able to get a backup to succeed with the 8meg band size.
 
-== Setup TimeMachine ==
+== Setup Time Machine ==
 Open up TimeMachine in System Preferences, Change Disk to DroboCapsule. If you don't see DroboCapsule, then click on it in the Finder to mount it as a guest user. 
 
 http://backmyfruitup.googlecode.com/svn/wiki/tm-selection.png
