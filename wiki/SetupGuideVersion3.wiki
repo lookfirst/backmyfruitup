@@ -13,7 +13,7 @@ Note: I take no responsibility if this software destroys your applications or yo
 
 *I have spent over 100 hours making all of this work and continue to provide support for questions people have. Trust me, it was not easy to make such a painless procedure. If you find this package useful, any sized [http://paypal.com Paypal] donations are most appreciated. Just click the Donate button.*
 
-<wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donate.xml" border="0" width="140" height="70" />
+<wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donate.xml" border="0" width="150" height="70" />
 
 = {{{Installation}}} =
 
@@ -169,7 +169,7 @@ There is a [http://groups.google.com/group/backmyfruitup google group] setup for
 
 First, don't forget to donate some of your hard earned cash to me for spending so much time on this project. Any amount is fine. For all of the people who email me asking how to disable this message, it pays to read all of the documentation first. =)
 
-<wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donate.xml" border="0" width="140" height="70" />
+<wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donate.xml" border="0" width="150" height="70" />
 
 To turn off the annoying message, all you need to do is rename the MESSAGE.txt file to anything else and then reboot your DroboShare. You can also edit the file and put your own message there.
 
