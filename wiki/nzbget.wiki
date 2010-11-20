@@ -2,6 +2,6 @@ I'm going to try something a little different. Times are tough and my time is va
 
 Click the button below (note: a paypal account is not required to donate):
 
-<wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donatenzbget.xml" border="0" width="140" height="70" />
+<wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donatenzbget.xml" border="0" width="150" height="70" />
 
 Thank you.
