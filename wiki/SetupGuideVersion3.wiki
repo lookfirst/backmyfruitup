@@ -48,7 +48,7 @@ ln -s /mnt/DroboShares/NAME_FROM_LINE_ABOVE /mnt/DroboShares/Drobo
 *Please note:* If you can't get the naming correct, then there isn't much I can do to help you. You can either try making a single large partition for your Drobo (which is when I see people generally having this problem) or I suggest contacting the Drobo support staff.
 
 == {{{Get BackMyFruitUp}}} ==
-If you have not already done so, download the BackMyFruitUp 3.0 package from the Downloads tab above. Do not expand the enclosed netatalk.tgz file.
+If you have not already done so, download the BackMyFruitUp 3.1 package from the Downloads tab above. Do not expand the enclosed netatalk.tgz file.
 
 == {{{Install BackMyFruitUp}}} ==
 Install netatalk.tgz by coping the file into your DroboApps folder. You will need to restart the DroboShare to get things running. It is easiest to do do a restart by using the DroboAdmin webpage.
@@ -72,7 +72,7 @@ sparsebundle that will be created in the next step.
 http://backmyfruitup.googlecode.com/svn/wiki/drobocapsule_mounts.png
 
 == {{{Setup BackMyFruitUp}}} ==
-This part is new in 3.0. OSX 10.6 introduced a change to the way TM backups work. Previously, it was possible to create a sparsebundle of a specific size and that would limit the size of the backup. The new change is that TM will automatically resize the sparsebundle to be the maximum size of the volume it is on. Therefore, there is a new option to netatalk which allows you to define the size of the volume. To do this, you need to edit the AppleVolumes.default configuration file by hand using your favorite text editor (TextEdit works fine). It is located in the directory tree outlined in the image below.
+This part is new in 3.1. OSX 10.6 introduced a change to the way TM backups work. Previously, it was possible to create a sparsebundle of a specific size and that would limit the size of the backup. The new change is that TM will automatically resize the sparsebundle to be the maximum size of the volume it is on. Therefore, there is a new option to netatalk which allows you to define the size of the volume. To do this, you need to edit the AppleVolumes.default configuration file by hand using your favorite text editor (TextEdit works fine). It is located in the directory tree outlined in the image below.
 
 http://backmyfruitup.googlecode.com/svn/wiki/applevolumes_default.png
 
@@ -90,7 +90,7 @@ Please note, I haven't tested changing the volsizelimit value once backups have 
 Once you change this file, you should restart your DroboShare using the DroboAdmin application in order to make the changes take effect.
 
 == {{{Run Create Backup Volume}}} ==
-Run the Create Backup Volume (CBV) application included in the BackMyFruitUp 3.0 download folder. It will ask you for the size of the volume and will create a new sparsebundle on your desktop. You should set this to a size which is about 100megs larger than the amount of space used on the drive you are backing up. This will take a few minutes to run.
+Run the Create Backup Volume (CBV) application which you can download from the downloads tab above. It will ask you for the size of the volume and will create a new sparsebundle on your desktop. You should set this to a size which is about 100megs larger than the amount of space used on the drive you are backing up. This will take a few minutes to run.
 
 After it is finished, copy the sparsebundle to the DroboCapsule share and delete it from your desktop. Note: You will need to run the CBV application on each Mac that you want to backup.
 
