@@ -11,10 +11,6 @@ Apple makes it very difficult to use TimeMachine to backup to anything other tha
 
 Note: I take no responsibility if this software destroys your applications or you lose all of your possessions.
 
-*I have spent over 100 hours making all of this work and continue to provide support for questions people have. Trust me, it was not easy to make such a painless procedure. If you find this package useful, any sized [http://paypal.com Paypal] donations are most appreciated. Just click the Donate button.*
-
-<wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donate.xml" border="0" width="150" height="70" />
-
 = {{{Installation}}} =
 
 == {{{Drive Formatting Considerations}}} ==
