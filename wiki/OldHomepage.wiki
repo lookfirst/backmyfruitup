@@ -1,0 +1,53 @@
+<wiki:gadget url="http://drobocapsule.googlecode.com/svn/wiki/adsense2.xml" border="0" width="468" height="60" />
+
+= Welcome to the BackMyFruitUp project =
+
+<img src="http://backmyfruitup.googlecode.com/svn/wiki/fruit_sm.jpg" />
+
+BackMyFruitUp adds netatalk (AFP) functionality to a DroboShare. In turn it also adds support for TimeMachine backups to a Drobo via a DroboShare. Effectively it allows for a TimeCapsule-like backup system to a NAS drive. This project is fully tested and stable.
+
+*Many people have reported faster transfer speeds using this product than with the built in SMB sharing on the DroboShare. This has been more than worth installing for some people just because of this.*
+
+Start with the SetupGuideVersion3.
+
+*Please note: The current version does not work with the recently released 10.7 Lion. I'm working on it.*
+
+
+=== Changes ===
+8/26/10:
+  * 3.1 has been released. This version uses netatalk 2.1.3 which has an important bug fix in it.
+
+6/20/10:
+  * 3.0 has been released. This version uses netatalk 2.1.2 to support TimeMachine backups on 10.6.x.
+
+6/14/09:
+  * 2.0 has been released. Come and get it. Let me know of problems in the google discussion group.
+  * 2.0 uses the latest versions of the bundled software and runs as root now.
+
+5/20/09:
+  * A new version is in the works, but not released yet. Please join the discussion group (linked on the right) to be notified of new releases.
+
+11/14/08:
+  * Successfully completed a full restore test and added documentation to the SetupGuideVersion2.
+
+11/12/08:
+ * Changed to the new project name BackMyFruitUp
+ * Added the 'source code' to the automator action to the downloads section.
+
+11/10/08:
+ * v1.1 of Create Backup Volume automator action now creates 16 files per gig of backup. {{{-imagekey sparse-band-size=131072 (131072 * 512 byte sectors = 64m)}}} This provides better backup and restore performance.
+
+11/6/08:
+  * Improved the process for setting up a TM backup...
+  * Added Create Backup Volume automator action.
+  * Rewrote SetupGuideVersion2 to reflect the new CBV app.
+  * v3 of the netatalk.tgz file. Fixes small issue with start script that could prevent avahi/dbus from starting.
+
+11/4/08:
+  * Fixed avahi daemon eating up 100% cpu
+  * Hardened the netatalk-start.sh script.
+  * Added netatalk-stop.sh script.
+  * Fixed the tarball distribution for hot deploy.
+
+11/3/08: 
+  * Initial release.
