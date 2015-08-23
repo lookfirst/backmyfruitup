@@ -1,0 +1,139 @@
+&lt;wiki:gadget url="http://drobocapsule.googlecode.com/svn/wiki/adsense2.xml" border="0" width="468" height="60" /&gt;
+
+# Introduction #
+
+Apple makes it very difficult to use TimeMachine to backup to anything other than the expensive proprietary  TimeCapsule. This project enables one to use TimeMachine to backup to a Drobo/DroboShare over AFP via netatalk. This project is fully tested and stable. Multiple machines can be backed up to the same Drobo using different sparsebundles for each machine.
+
+Note: I take no responsibility if this software destroys your applications or you lose all of your possessions.
+
+**I have spent over 100 hours making all of this work and continue to provide support for questions people have. Trust me, it was not easy to make such a painless procedure. If you find this package useful, any sized [Paypal](http://paypal.com) donations are most appreciated. Just click the Donate button.**
+
+&lt;wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donate.xml" border="0" width="140" height="70" /&gt;
+
+# Installation #
+
+#1. For the best results, you should be using ext3 as your filesystem on your Drobo. There is a caveat in that you won't be able to run Disk Utility on your Drobo unless you purchase a [$40 piece of software](http://www.paragon-software.com/home/extfs-mac/).
+I also haven't tested this.
+
+NTFS and FAT32 do not support symbolic links properly, so they won't work. The Linux implementation of HFS+ (what is running on the DroboShare) has a bug with deleting files as well as with resource forks. So, the only way to free up deleted space on your Drobo for files that have been deleted with BackMyFruitUp, is to run Disk Utility.
+
+If you are **only** using your Drobo for storing TimeMachine backups, you are pretty safe with HFS+. I use this solution because I don't delete files on my Drobo and I only use it for TM.
+
+#2. Install the [DroboApps Admin](http://drobo.com/droboapps/downloads/index.php?id=19) package using the standard [DroboApps installation instructions](http://drobo.com/droboapps/faq/index.html). Once you have the admin package installed, make sure to also install [Dropbear SSH](http://www.drobo.com/droboapps/downloads/index.php?id=18) and [Add Swap Memory](http://www.drobo.com/droboapps/downloads/index.php?id=9). Both of these are easily installed from the Admin package.
+
+#3. Open Terminal.app and log into your DroboShare via SSH. ssh root@[DROBO IP HERE](YOUR.md). ex: ssh root@192.168.1.32
+
+_Note: the default root password is stored in the Important Information tab of the DroboAdmin website. See ReadMe.pdf enclosed with the Drobo Admin download for more details._
+
+![http://backmyfruitup.googlecode.com/svn/wiki/ssh-example.png](http://backmyfruitup.googlecode.com/svn/wiki/ssh-example.png)
+
+Confirm that the path to your DroboApps folder is this: ` /mnt/DroboShares/Drobo/DroboApps `. **This is required for BackMyFruitUp to install properly.** The reason is because there is so many hard coded paths in the configuration files that it would be a real nightmare to try to make this any more dynamic than it is. If it is not this directory structure, you will need to use the latest >1.5.1 release of [Drobo Dashboard](http://drobo.com/support/updates.php) to rename your Drobo volume.
+
+These command should also work to set the path if you don't have the above path:
+
+```
+ls -la /mnt/DroboShares
+(take note of the name of the folder in this directory listing)
+ln -s /mnt/DroboShares/NAME_FROM_LINE_ABOVE /mnt/DroboShares/Drobo
+```
+
+**Please note:** If you can't get the naming correct, then there isn't much I can do to help you. You can either try making a single large partition for your Drobo (which is when I see people generally having this problem) or I suggest contacting the Drobo support staff.
+
+#3. Download and install the BackMyFruitUp 2.0 package from the Downloads tab above. Do not expand the enclosed netatalk.tgz file.
+
+#4. Install netatalk.tgz by coping the file into your DroboApps folder. You will need to restart the DroboShare to get things running. It is easiest to do do a restart by using the DroboAdmin webpage.
+
+_NOTE: Drobo Dashboard 1.5.1 has a bug with 10.6.1 that prevents the DroboShare
+mount from automatically showing up. You can work around this by hitting command-k
+and typing smb://IP\_ADDRESS\_OF\_YOUR\_DROBO\_HERE and choosing to connect as a Guest user._
+
+![http://backmyfruitup.googlecode.com/svn/wiki/tgz-in-folder.png](http://backmyfruitup.googlecode.com/svn/wiki/tgz-in-folder.png)
+
+Once the DroboShare is restarted, the netatalk.tgz file will convert into a netatalk folder. This should cause 'DroboCapsule' to appear in the Finder under the SHARED heading next to the DrobShare heading. It should have an icon like an XServe server.
+
+![http://backmyfruitup.googlecode.com/svn/wiki/properly-expanded.png](http://backmyfruitup.googlecode.com/svn/wiki/properly-expanded.png)
+
+# Details for TimeMachine Setup #
+
+#1. From a Finder window click on the DroboCapsule in the Shared list
+and mount it as guest.  You should see two volumes, one titled Drobo and
+another titled DroboCapsule (see image below).  These are mount points via AFP. They
+differ from the mount via the Drobo Dashboard called DroboShare, which uses
+SMB (see note above about 10.6.1 bug). Load the DroboCapsule volume from the mount
+point. This is where you will put the sparsebundle that will be created
+in the next step.
+
+![http://backmyfruitup.googlecode.com/svn/wiki/drobocapsule_mounts.png](http://backmyfruitup.googlecode.com/svn/wiki/drobocapsule_mounts.png)
+
+#2. Run the Create Backup Volume application included in the BackMyFruitUp 2.0 download folder. It will ask you for the maximum size of the volume and will create a new sparsebundle on your desktop. This will take a few minutes to run. After it is finished, copy the sparsebundle to the DroboCapsule share and delete it from your desktop. Note: You will need to run this application on each Mac that you want to backup.
+
+#3. Log out of the Finder and log back in.
+
+#4. Open up TimeMachine in System Preferences, Change Disk to DroboCapsule. If you don't see DroboCapsule, then click on it in the Finder to mount it as a guest user. Now, start a backup. It should fail the first time. Eject the DroboCapsule share and start another backup again. This one should succeed. Remember, if you are on wireless, the first backup will take a long time. Sometimes it is better to just plug the machine in to a hub and back up the first time.
+
+# Upgrade #
+
+If you are upgrading from the previous version of BackMyFruitUp, all you need to do is first rename the existing netatalk folder to something else. Copy over the new netatalk.tgz and then restart your DroboShare using the DroboAdmin webpage. Please note that netatalk now runs as root by default. This will allow you to access all of your SMB files without problems. Once you have restarted, you can safely delete the older netatalk folder.
+
+# Removal #
+
+Same with upgrade. Rename the folder, restart. Delete the folder after a restart.
+
+# Details for Full System Restore #
+
+A full system restore has been successfully tested using this system. Note, this will erase the machine you are restoring to and install a backed up image onto it. You can even choose at which point in time you would like to restore from. A full restore of my ~15gig laptop took about 30 minutes over a 100mbit wired ethernet connection. In order to do the restore, please follow the steps below.
+
+#1. Boot up from your OSX 10.5 / 10.6 installation dvd.
+
+#2. Select Terminal from the Utilities menu.
+
+#3. Mount the Drobo drive on your machine by typing the following into the Terminal window exactly as shown while replacing IPADDRESS with the actual IP address of your DroboShare:
+
+` mkdir /Volumes/DroboCapsule ; mount -t afp afp://IPADDRESS/DroboCapsule /Volumes/DroboCapsule `
+
+#4. Quit Terminal and then select "Restore System From Backup..." in the Utilities menu.
+
+#5. Your backups should show up and you can just follow the standard steps for a restore.
+
+# Users/groups permissions #
+
+This is left as an excercise for the reader. It is entirely possible to set this up, but will require reading and understanding the netatalk documentation. You will also need some knowledge of how to create and manage unix users and groups.
+
+_Please note that it is not recommended to use this solution to do this._ The primary goal of BackMyFruitUp is only to provide an inexpensive/low power way to do TM backups and file access to a small number of users in a home/small office setting. The DroboShare is not a high performance file server at all and using a solution like this for doing that is kind of the wrong tool for the wrong job. If you want a much better, but still inexpensive tool, I'd suggest getting a Mac Mini and plugging your Drobo into that. You will also get a nice user interface for managing users and can integrate that into a central authentication store.
+
+# Common problems #
+
+  * If TimeMachine immediately turns off after selecting a volume and you see the error message below in the Console.app's logs, then open up the Keychain Access.app, search for Drobo and delete whatever key is there.
+
+```
+System Preferences[565] Time Machine: Error -25299 while storing password in keychain for username:  serverURL: 
+afp://;AUTH=No%20User%20Authent@DroboCapsule._afpovertcp._tcp.local/DroboCapsule 
+```
+
+  * If TimeMachine fails to backup after a successful backup with the error (The backup volume could not be mounted.), MAKE SURE the DroboCapsule volume is not mounted. Click the little eject button next to it. It is fine to mount the Drobo volume at any time. It is also fine to mount the DroboCapsule volume AFTER TimeMachine has started. Just make sure it isn't mounted before TimeMachine starts up.
+
+  * Sometimes netatalk can get into a funk. Especially if the DroboShare goes down during a copy. The symptom is that when trying to connect to the server the connection will fail (even though it was working fine before). If this happens, ensure nobody is connected to the server or trying to connect. Then, log into the DroboShare over ssh and `cd /mnt/DroboShares/Drobo; rm -rf .AppleDB .AppleDesktop .AppleDouble`. You may also have to remove these directories from the DroboCapsule folder as well. It seems that occasionally these directories full of files can sometimes get corrupted. Removing these folders fixes that problem and doesn't seem to affect anything else. Here is a screen shot example of deleting those folders...
+
+![http://backmyfruitup.googlecode.com/svn/wiki/delete_apple_folders.png](http://backmyfruitup.googlecode.com/svn/wiki/delete_apple_folders.png)
+
+  * If you are experiencing slow copies or backups, it is probably because you have antivirus software installed. Either disable it or somehow tell it to not check files during backups.
+
+  * According to [Apple's documentation](http://developer.apple.com/mac/library/documentation/NetworkingInternetWeb/Conceptual/TimeMachineNetworkInterfaceSpecification/TimeMachineRequirements/TimeMachineRequirements.html#//apple_ref/doc/uid/TP40008951-CH100-SW1), it is important not to store other files on the DroboCapsule -> DroboCapsule share point other than the sparse images. If you need to put files on the server, put them in the DroboCapsule -> Drobo share point.
+
+
+# Support #
+
+There is a [google group](http://groups.google.com/group/backmyfruitup) setup for discussion.
+
+  * Please make sure that you read all of the [archives](http://groups.google.com/group/backmyfruitup) first before posting any questions.
+  * If you haven't figured out your problem from the archives, then please make sure to give as much information as possible about what you have done in setup.
+  * Include output of 'ps' and 'ls -la' when showing what is running on your DroboShare and paths to things. Include any relevant lines from Console.app.
+  * You will most likely get a faster and more complete response if you remember to donate. I created this project in my spare time. It works fine for me and many other people. Supporting your issues takes even more time and energy, so donations keep me motivated to help you.
+
+# Disable annoying message #
+
+First, don't forget to donate some of your hard earned cash to me for spending so much time on this project. Any amount is fine. For all of the people who email me asking how to disable this message, it pays to read all of the documentation first. =)
+
+To turn off the annoying message, all you need to do is rename the MESSAGE.txt file to anything else and then reboot your DroboShare. You can also edit the file and put your own message there.
+
+![http://backmyfruitup.googlecode.com/svn/wiki/message-no-more.png](http://backmyfruitup.googlecode.com/svn/wiki/message-no-more.png)

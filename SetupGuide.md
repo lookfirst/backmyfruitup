@@ -1,0 +1,81 @@
+&lt;wiki:gadget url="http://drobocapsule.googlecode.com/svn/wiki/adsense2.xml" border="0" width="468" height="60" /&gt;
+
+# UPDATE #
+
+The latest version of this document is now at: SetupGuideVersion2
+
+# UPDATE May 20th, 2009 #
+
+I am working on releasing a new version of BackMyFruitUp as soon as possible. This version has the latest versions of all of the software used in it. I have also enabled the ability to configure netatalk to start up and run as root. If you are having problems getting the current version to run properly, please subscribe to the [google group](http://groups.google.com/group/backmyfruitup) so that you are notified of new releases.
+
+# Introduction #
+
+Apple makes it very difficult to use TimeMachine to backup to anything other than the expensive proprietary  TimeCapsule. This project enables one to use TimeMachine to backup to a Drobo/DroboShare over AFP via netatalk. This project is fully tested and stable. Multiple machines can be backed up to the same Drobo using different sparsebundles for each machine.
+
+Note: I take no responsibility if this software destroys your applications or you lose all of your possessions.
+
+**I have spent close to 60 hours making all of this work and continue to provide support for questions people have. Trust me, it was not easy to make such a painless procedure. If you find this package useful, any sized [Paypal](http://paypal.com) donations are most appreciated. Just click the Donate button.**
+
+&lt;wiki:gadget url="http://backmyfruitup.googlecode.com/svn/wiki/donate.xml" border="0" width="140" height="70" /&gt;
+
+# Details for Installation #
+
+#1. You must be using ext3 or HFS+ as your filesystem on your Drobo. I personally use HFS+. The reason is because NTFS and FAT32 do not support symbolic links properly. This will prevent BackMyFruitUp from working.
+
+#2. Confirm that the path to your DroboApps folder is this: ` /mnt/DroboShares/Drobo/DroboApps `. This is required for netatalk to install properly. The reason is because there is so many hard coded paths in the configuration files that it would be a real nightmare to try to make this any more dynamic than it is.
+
+#3. Download and install the netatalk.tgz and CreateBackupVolume.zip package from the Downloads tab above. Do not expand the netatalk.tgz file. If needed, expand the CreateBackupVolume.zip file by double clicking on it.
+
+#4. Install netatalk.tgz using standard DroboApps installation instructions (copy the file into your DroboApps folder). You will need to restart the DroboShare to get things running. It is easiest to do this if you have already installed the DroboApps Admin package. Once the DroboShare is restarted, this should cause 'DroboCapsule' to appear in the Finder under the SHARED heading. It should have an icon like an XServe server.
+
+# Details for TimeMachine Setup #
+
+#1. From a Finder window click on the DroboCapsule in the Shared list and mount it as guest.  You should see two volumes, one titled Drobo and another titled DroboCapsule.  These are mount points via AFP. They differ from the mount via the Drobo Dashboard called Drobo, which uses SMB.  Load the DroboCapsule volume from the mount point. This is where you will put the sparsebundle that will be created in the next step.
+
+#2. Run the Create Backup Volume application. It will ask you for the maximum size of the volume and will create a new sparsebundle on your desktop. After it is finished, copy the sparsebundle to the DroboCapsule share and delete it from your desktop. Note: You will need to run this application on each mac that you want to backup.
+
+#3. Log out of the Finder and log back in.
+
+#4. Open up TimeMachine in System Preferences, Change Disk to DroboCapsule. If you don't see DroboCapsule, then click on it in the Finder to mount it as a guest user. Now, start a backup. It should fail the first time. Eject the DroboCapsule share and start another backup again. This one should succeed. Remember, if you are on wireless, the first backup will take a long time. Sometimes it is better to just plug the machine in to a hub and back up the first time.
+
+## Common problems ##
+
+  * If TimeMachine immediately turns off after selecting a volume and you see the error message below in the Console.app's logs, then open up the Keychain Access.app, search for Drobo and delete whatever key is there.
+
+```
+System Preferences[565] Time Machine: Error -25299 while storing password in keychain for username:  serverURL: 
+afp://;AUTH=No%20User%20Authent@DroboCapsule._afpovertcp._tcp.local/DroboCapsule 
+```
+
+  * If TimeMachine fails to backup after a successful backup with the error (The backup volume could not be mounted.), MAKE SURE the DroboCapsule volume is not mounted. Click the little eject button next to it. It is fine to mount the Drobo volume at any time. It is also fine to mount the DroboCapsule volume AFTER TimeMachine has started. Just make sure it isn't mounted before TimeMachine starts up.
+
+  * I've heard of cases where an error below will show up in the Console.app log when trying to connect to the server and the connection will fail. If this happens, ensure nobody is connected to the server or trying to connect. Then, log into the DroboShare over ssh and `cd /mnt/DroboShares/Drobo; rm -rf .AppleDesktop .AppleDouble`. It seems that occasionally these two directories full of files can sometimes get corrupted. Removing these folders fixes that problem and doesn't seem to affect anything else.
+
+```
+/System/Library/CoreServices/Finder.app/Contents/MacOS/Finder[173]
+StatusMonitor::volumesChangedCallBack returned -47
+```
+
+# Details for Removal/Upgrade #
+
+Delete the DroboApps/netatalk folder and reboot your droboshare. Because of permission issues, you may have to do this over the SMB share or by logging into the DroboShare via ssh.
+
+# Details for Full System Restore #
+
+A full system restore has been successfully tested using this system. Note, this will erase the machine you are restoring to and install a backed up image onto it. You can even choose at which point in time you would like to restore from. A full restore of my ~15gig laptop took about 30 minutes over a 100mbit wired ethernet connection. In order to do the restore, please follow the steps below.
+
+#1. Boot up from your OSX 10.5 installation dvd.
+
+#2. Select Terminal from the Utilities menu.
+
+#3. Mount the Drobo drive on your machine by typing the following into the Terminal window exactly as shown while replacing IPADDRESS with the actual IP address of your DroboShare:
+
+` mkdir /Volumes/DroboCapsule ; mount -t afp afp://IPADDRESS/DroboCapsule /Volumes/DroboCapsule `
+
+#4. Quit Terminal and then select "Restore System From Backup..." in the Utilities menu.
+
+#5. Your backups should show up and you can just follow the standard steps for a restore.
+
+# Support #
+
+There is a [google group](http://groups.google.com/group/backmyfruitup) setup for discussion. Please make sure that you read all of the archives first before posting any questions.
